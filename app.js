@@ -8,7 +8,7 @@ const bcrypt = require("bcryptjs");
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 const multer = require('multer');
-
+require('dotenv').config();
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
 
@@ -18,11 +18,13 @@ var nodemailer = require("nodemailer");
 // const mongoUrl =
 //   "mongodb+srv://adarsh:adarsh@cluster0.zllye.mongodb.net/?retryWrites=true&w=majority";
 
-const JWT_SECRET = "bkhdbdkchd()Teg2n#fbeheuugfwbhjbvvhbk"; // Define your JWT secret
+// const JWT_SECRET = "bkhdbdkchd()Teg2n#fbeheuugfwbhjbvvhbk"; // Define your JWT secret
 
-const mongoUrl = "mongodb+srv://anushkam254:TjLFXNtclHKd4LbS@cluster0.uwac3kx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// MONGODB_CONNECT_URI= "mongodb+srv://anushkam254:TjLFXNtclHKd4LbS@cluster0.uwac3kx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 
+const mongoUrl = process.env.MONGODB_CONNECT_URI;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 mongoose
   .connect(mongoUrl, {
@@ -107,8 +109,10 @@ app.post("/userData", async (req, res) => {
   } catch (error) {}
 });
 
+const PORT = process.env.PORT
+
 app.listen(5000, () => {
-  console.log("Server Started");
+  console.log("Server Started"+PORT);
 });
 
 app.post("/forgot-password", async (req, res) => {
@@ -327,3 +331,5 @@ app.get("/paginatedUsers", async (req, res) => {
   results.result = allUser.slice(startIndex, lastIndex);
   res.json(results);
 });
+
+
