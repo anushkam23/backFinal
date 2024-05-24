@@ -467,7 +467,7 @@ app.post("/forgot-password", async (req, res) => {
       service: "gmail",
       auth: {
         user: "anushkamalhotra2003@gmail.com",
-        pass: process.env.EMAIL_PASSWORD,  // Load from environment variable for security
+        pass: EMAIL_PASSWORD,  // Load from environment variable for security
       },
     });
 
