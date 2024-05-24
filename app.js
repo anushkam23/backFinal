@@ -461,13 +461,13 @@ app.post("/forgot-password", async (req, res) => {
       expiresIn: "5m",
     });
     // const link = `http://localhost:${PORT}/reset-password/${oldUser._id}/${token}`;
-    const link = `https://backfinal-1-llx1.onrender.com/reset-password/${oldUser._id}/${token}`;
+   const link = `https://backfinal-1-llx1.onrender.com/reset-password/${oldUser._id}/${token}`;
 
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: "anushkamalhotra2003@gmail.com",
-        pass: EMAIL_PASSWORD,  // Load from environment variable for security
+        pass: process.env.EMAIL_PASSWORD,  // Load from environment variable for security
       },
     });
 
